@@ -25,16 +25,16 @@
         </div>
         <div class="newsletter">
           <form method="POST">
-            <input
-              type="email"
-              name="email"
-              maxlength="100"
-              placeholder="Enter your email"
-              required=""
-              id="id_email"
-            />
+           {% csrf_token %}
+           {{subscribe_form}}
             <button class="btn btn-primary">Subscribe</button>
           </form>
+          
+          {% if subscribe_successful %}
+          <br> <p>{{subscribe_successful}}</p>
+            
+          {% endif %}
+            
         </div>
       </center>
         </div>
@@ -70,13 +70,13 @@
       <div class="container">
         <h1 class="sec-title">Top blogs</h1>
         <div class="grid-3">
-            {% for post in posts %}
+            {% for post in top_posts %}
             <!-- card -->
           <a href="{% url 'post_page' post.slug %}">
             <div class="card">
               <div class="post-img">
                 <img src="{{post.images.url}}" alt="" />
-                <div class="tag">{{tag.name}}</div>
+                <div class="tag">{{post.tags.all.0.name}}</div>
               </div>
               <div class="card-content">
                 <h3>
@@ -108,13 +108,13 @@
       <div class="container">
         <h1 class="sec-title">New blogs</h1>
         <div class="grid-3">
-            {% for post in posts %}
+            {% for post in recent_posts %}
             <!-- card -->
           <a href="{% url 'post_page' post.slug %}">
             <div class="card">
               <div class="post-img">
                 <img src="{{post.images.url}}" alt="" />
-                <div class="tag">{{tag.name}}</div>
+                <div class="tag">{{post.tags.all.0.name}}</div>
               </div>
               <div class="card-content">
                 <h3>
