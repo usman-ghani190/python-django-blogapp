@@ -5,6 +5,9 @@ from django.urls import reverse
 from app.forms import CommentForm, SubscribeForm
 from app.models import Comments, Post, Profile, Tag
 
+from django.contrib.auth.models import User
+from django.db.models import Count
+
 # Create your views here.
 
 def index(request):
@@ -75,7 +78,10 @@ def tag_page(request, slug):
 def author_page(request, slug):
     profile= Profile.objects.get(slug=slug)
 
-    top_posts= Post.objects.filter(profile.user).order_by('-view_count')[0:3]
-    recent_posts= Post.objects.filter(profile.user).order_by('-last_updated')[0:3]
-    context= {'profile':profile, 'top_posts':top_posts, 'recent_posts':recent_posts}
+    top_posts= Post.objects.filter(author= profile.user).order_by('-view_count')[0:2]
+    recent_posts= Post.objects.filter(author= profile.user).order_by('-last_updated')[0:3]
+    top_authors=User.objects.annotate(number= Count('post')).order_by('-number')
+
+
+    context= {'profile':profile, 'top_posts':top_posts, 'recent_posts':recent_posts, 'top_authors':top_authors}
     return render(request, 'app/author.html', context)

@@ -62,13 +62,15 @@
                     </div>
                   </a>
                   <!-- card end-->
+                  {% empty %}
+                  <p>Nothing to show here.</
                 {% endfor %}
                 </div>
               </div>
             </section>
              <section class="sp">
               <div class="container">
-                <h1 class="sec-title">Recent Posts</h1>
+                <h1 class="sec-title">Recent posts</h1>
                 <div class="grid-3 blog-grid">
                 {% for post in recent_posts %}
                     
@@ -97,6 +99,8 @@
                     </div>
                   </a>
                   <!-- card end-->
+                  {% empty %}
+                  <p>Nothing to show here.</
                 {% endfor %}
                  
                 </div>
