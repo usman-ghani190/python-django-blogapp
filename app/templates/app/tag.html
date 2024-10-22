@@ -51,10 +51,10 @@
                         </h3>
                         <div class="author">
                           <div class="profile-pic">
-                            <img src="../images/author.svg" alt="" />
+                            <img src="{{post.author.profile.profile_image.url}}" alt="" />
                           </div>
                           <div class="details">
-                            <p>Author name</p>
+                            <p>{{post.author.first_name}}</p>
                             <small>{{post.last_updated|date}}</small>
                           </div>
                         </div>
@@ -66,7 +66,7 @@
                 </div>
               </div>
             </section>
-            {% comment %} <section class="sp">
+             <section class="sp">
               <div class="container">
                 <h1 class="sec-title">Recent Posts</h1>
                 <div class="grid-3 blog-grid">
@@ -86,10 +86,10 @@
                         </h3>
                         <div class="author">
                           <div class="profile-pic">
-                            <img src="../images/author.svg" alt="" />
+                            <img src="{{post.author.profile.profile_image.url}}" alt="" />
                           </div>
                           <div class="details">
-                            <p>Author name</p>
+                            <p>{{post.author.first_name}}</p>
                             <small>{{post.last_updated|date}}</small>
                           </div>
                         </div>
@@ -108,7 +108,7 @@
                 </center>
               </div>
             </section>
-            <section class="sp">
+            {% comment %}<section class="sp">
               <div class="container">
                 <h1 class="sec-title">Featueal</h1>
                 <div class="grid-3 blog-grid">
