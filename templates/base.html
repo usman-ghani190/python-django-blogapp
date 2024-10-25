@@ -40,14 +40,33 @@
           <a href="#">All posts</a>
         </div>
         <div class="action-btn">
-          <a href="pages/login.html"
-            ><button class="btn btn-scoundary">Login</button></a
-          >
-          <a href="pages/signup.html">
-            <button class="btn btn-primary">Sign Up</button></a
-          >
+          {% if user.is_authenticated %}
+              <!-- User is logged in, show Logout button -->
+              <form method="POST" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button class="btn btn-primary">Logout</button>
+              </form>
+          {% else %}
+              <!-- User is not logged in, show Login and Sign Up buttons -->
+              <a href="{% url 'login' %}">
+                  <button class="btn btn-scoundary">Login</button>
+              </a>
+              <a href="#">
+                  <button class="btn btn-primary">Sign Up</button>
+              </a>
+          {% endif %}
           <i class="uil uil-align-center-alt menu" onclick="menu()"></i>
-        </div>
+      </div>
+        {% comment %} <div class="action-btn">
+          
+          <a href="pages/login.html"
+          ><button class="btn btn-scoundary">Login</button></a
+        >
+        <a href="pages/signup.html">
+          <button class="btn btn-primary">Sign Up</button></a
+        >
+        <i class="uil uil-align-center-alt menu" onclick="menu()"></i>
+        </div> {% endcomment %}
       </div>
     </header>
     <main>

@@ -110,3 +110,6 @@ def about(request):
         website_info= WebsiteMeta.objects.all()[0]
     context={'website_info':website_info}
     return render(request, 'app/about.html', context)
+
+def logged_out(request):
+    return render(request, 'registration/logged_out.html')
