@@ -1,12 +1,13 @@
 from turtle import title
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from app.forms import CommentForm, SubscribeForm
+from app.forms import CommentForm, NewUserForm, SubscribeForm
 from app.models import Comments, Post, Profile, Tag, WebsiteMeta
 
 from django.contrib.auth.models import User
+from django.contrib.auth import login
 from django.db.models import Count
 
 # Create your views here.
@@ -113,3 +114,14 @@ def about(request):
 
 def logged_out(request):
     return render(request, 'registration/logged_out.html')
+
+def register_user(request):
+    form= NewUserForm()
+    if request.POST:
+        form= NewUserForm(request.POST)
+        if form.is_valid():
+            user= form.save()
+            login(request, user)
+            return redirect('/')
+    context={"form": form}
+    return render(request, 'registration/registration.html', context)
