@@ -48,6 +48,7 @@ class Post(models.Model):
     view_count= models.IntegerField(null=True, blank=True)
     is_featured= models.BooleanField(default=False)
     author= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    bookmarks= models.ManyToManyField(User, related_name='bookmarks', blank=True, default=None)
 
     def __str__(self):
         return self.title

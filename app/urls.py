@@ -14,4 +14,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='logged_out'), name='logout'),
     path('logged-out/', views.logged_out, name='logged_out'),
     path('account/register', views.register_user, name='register'),
+    path('bookmark_post/<slug:slug>', views.bookmark_post, name='bookmark_post'),
 ]
