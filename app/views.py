@@ -152,3 +152,8 @@ def like_post(request, slug):
     else:
         post.like.add(request.user)
     return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
+
+def all_bookmarked_posts(request):
+    all_bookmarked_posts= Post.objects.filter(bookmarks=request.user)
+    context={'all_bookmarked_posts':all_bookmarked_posts}
+    return render(request, 'app/all_bookmarked_posts.html', context)
