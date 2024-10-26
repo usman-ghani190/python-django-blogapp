@@ -164,6 +164,6 @@ def all_posts(request):
     return render(request, 'app/all_posts.html', context)
 
 def all_likes(request):
-    all_likes= Post.objects.filter(likes= request.user)
+    all_likes= Post.objects.filter(like= request.user)
     context= {'all_likes':all_likes}
     return render(request, 'app/all_likes.html', context)
