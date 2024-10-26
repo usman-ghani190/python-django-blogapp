@@ -91,9 +91,30 @@
                     </div>
                     <div class="social-share">
                       <div class="reactions">
-                        <div class="likes">
-                          <i class="uil uil-heart"></i> <span>200</span>
-                        </div>
+                        
+                        {% if user.is_authenticated %}  
+                        <form action="{% url 'like_post' post.slug %}" method="POST">
+                          {% csrf_token %}
+                          <input type='hidden' name='post_id' value='{{post.id}}'>
+
+                          {% if is_liked %}
+                          <div class="likes">
+                            <button type="submit">
+                            <i class="fa-solid fa-heart"></i> <span>{{post.like.count}}</span>
+                          </div>
+                          {% else %}
+                          <div class="likes">
+                            <button type="submit">
+                            <i class="uil uil-heart"></i> <span>{{post.like.count}}</span>
+                          </div>
+                          {% endif %}
+                        </form>
+                        {% else %}
+                            <a class="track" href="{% url 'login' %}?next={% url 'bookmark_post' post.slug %}">
+                            <i class="uil uil-heart"></i> <span>{{post.like.count}}</span>
+
+                        {% endif %}
+                          
                         <div class="total-comments">
                           <i class="uil uil-comment-alt"></i>
                           <span>10</span>

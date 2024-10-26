@@ -15,4 +15,5 @@ urlpatterns = [
     path('logged-out/', views.logged_out, name='logged_out'),
     path('account/register', views.register_user, name='register'),
     path('bookmark_post/<slug:slug>', views.bookmark_post, name='bookmark_post'),
+    path('like_post/<slug:slug>', views.like_post, name='like_post'),
 ]

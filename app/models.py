@@ -49,6 +49,7 @@ class Post(models.Model):
     is_featured= models.BooleanField(default=False)
     author= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     bookmarks= models.ManyToManyField(User, related_name='bookmarks', blank=True, default=None)
+    like= models.ManyToManyField(User, related_name='likes', blank=True, default=None)
 
     def __str__(self):
         return self.title
