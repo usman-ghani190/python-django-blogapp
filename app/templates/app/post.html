@@ -114,11 +114,18 @@
                             <i class="uil uil-heart"></i> <span>{{post.like.count}}</span>
 
                         {% endif %}
-                          
+                        
+                         {% comment %} {% if show_comments %}
+                        <div class="total-comments">
+                          <i class="fas fa-comment-alt"></i>
+                          <span>10</span>
+                        </div>
+                         {% else %}  {% endcomment %}
                         <div class="total-comments">
                           <i class="uil uil-comment-alt"></i>
                           <span>10</span>
                         </div>
+                         {% comment %} {% endif %}  {% endcomment %}
                       </div>
                       <div class="share">
                         <div class="social">
@@ -136,8 +143,11 @@
                           </a>
                         </div>
                       </div>
-                    </div>
+                    </div> 
                     <!-- comments -->
+                    
+                    {% comment %} {% if show_comments %} {% endcomment %}
+                      
                     {% for comment in comments %}
                     
                     <div class="user-comment">
@@ -233,6 +243,7 @@
                     </button>
                   </form>
                 </div>
+                {% comment %} {% endif %} {% endcomment %}
               </div>
             </section>
           </div>

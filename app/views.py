@@ -43,15 +43,28 @@ def post_page(request, slug):
     comments= Comments.objects.filter(post=post, parent=None)
     form= CommentForm()
 
+    # Bookmark
     bookmark=False
     if post.bookmarks.filter(id= request.user.id).exists():
         bookmark=True
     is_bookmarked=bookmark
 
+    # Likes
     like=False
     if post.like.filter(id= request.user.id).exists():
         like=True
     is_liked= like
+
+    # show_comments=None
+    # comments
+    # post = get_object_or_404(Post, slug=slug)
+    # show_comments = post.comments.filter(parent=None).exists()
+    # show_comments= False
+    # if post.comments.filter(parent=None):
+    #     show_comments= True
+    
+    # comments = post.comments.filter(parent=None)if show_comments else []
+    # form = CommentForm()
 
     if request.POST:
         comment_form= CommentForm(request.POST)
@@ -95,6 +108,7 @@ def post_page(request, slug):
                'top_authors':top_authors,
                'tags':tags,
                'related_posts':related_posts,
+            #    'show_comments':show_comments
                 }
     return render(request, 'app/post.html', context)
 
